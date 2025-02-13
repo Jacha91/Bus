@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account - Bus Booking</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('innos3.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: rgba(66, 167, 245, 0.756);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            margin: 0;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 500px;
+            margin: 50px auto 10px auto;
+            background-color: rgba(246, 245, 246, 0.817);
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(33, 32, 32, 0.79);
+            opacity: 0.9;
+        }
+        h2 {
+            text-align: center;
+            color: rgb(0, 0, 0);
+            font-weight: 700;
+            margin-bottom: 20px;
+                }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group button {
+            padding: 10px 20px;
+            background-color: #e951e9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #65f53a;
+        }
+        footer {
+            background-color: rgba(51, 51, 51, 0.8);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Account</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="about us.html">About Us</a></li>
+            <li><a href="bus details.html">Bus Details</a></li>
+            <li><a href="account.html"> Account </a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="news.html">News</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h2>Your Account </h2>
+        <form id="account-form">
+            <!-- Full Name -->
+            <div class="form-group">
+                <label for="full-name">Full Name:</label>
+                <input type="text" id="full-name" name="full-name" required>
+            </div>
+
+            <!-- Registration Number -->
+            <div class="form-group">
+                <label for="reg-number">Registration Number:</label>
+                <input type="text" id="reg-number" name="reg-number" pattern="BCS-\d{2}-\d{4}-\d{4}" required>
+                <small>Format: BCS-00-0000-0000</small>
+            </div>
+
+            <!-- Sex -->
+            <div class="form-group">
+                <label for="sex">Sex:</label>
+                <select id="sex" name="sex" required>
+                    <option value="">Select</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <!-- Region and Districts (Ajax) -->
+            <div class="form-group">
+                <label for="region">Region:</label>
+                <select id="region" name="region" required>
+                    <option value="">SELECT Region</option>
+                    <option value="">ARUSHA</option>
+                    <option value="male">DAR ES SALAAM</option>
+                    <option value="female">DODOMA</option>
+                    <option value="other">KILIMANJARO</option>
+                    <option value="">MBEYA</option>
+                    <!-- Regions will be populated dynamically using Ajax -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="district">District:</label>
+                <select id="district" name="district" required>
+                    <option value="">SELECT District</option>
+                    <option value="">KINONDONI</option>
+                    <option value="male">MPWAPWA</option>
+                    <option value="female">MOSHI </option>
+                    <option value="other">CHUNYA</option>
+                    <option value="">MERU</option>
+                    <!-- Districts will be populated dynamically based on the selected region -->
+                </select>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" minlength="8" required>
+                <small>Minimum 8 characters, including special characters.</small>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <br><br><br><br><br></br>
+    <footer>
+        <p>&copy; 2023 Bus Booking. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript for Form Validation
+        document.getElementById('account-form').addEventListener('submit', function(event) {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                event.preventDefault();
+            }
+        });
+
+        // Ajax for Region and Districts
+        $(document).ready(function() {
+            const regions = {
+                "Region 1": ["District 1A", "District 1B"],
+                "Region 2": ["District 2A", "District 2B"],
+                "Region 3": ["District 3A", "District 3B"]
+            };
+
+            // Populate Regions
+            $.each(regions, function(region, districts) {
+                $('#region').append(<option value="${region}">${region}</option>);
+            });
+
+            // Update Districts based on selected Region
+            $('#region').change(function() {
+                const selectedRegion = $(this).val();
+                $('#district').html('<option value="">Select District</option>');
+
+                if (selectedRegion) {
+                    $.each(regions[selectedRegion], function(index, district) {
+                        $('#district').append(<option value="${district}">${district}</option>);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

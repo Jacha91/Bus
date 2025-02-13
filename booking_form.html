@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking_Form - Bus Booking</title>
+    <style>
+        /* Existing CSS styles (keep them as-is) */
+        /* Add this new CSS for start/end points */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('innos4.jpeg');
+            background-size: auto 1000px;
+            background-position: center;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: rgba(66, 167, 245, 0.756);
+            color: rgb(11, 11, 11);
+            padding: 20px;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            margin: 0;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 700px;
+            margin: 100px auto 20px auto;
+            background-color: rgba(246, 245, 246, 0.817);
+            padding: 8px;
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(68, 67, 67, 0.982);
+            opacity: 0.9;}
+        h2 {
+            text-align: center;
+            color: rgb(0, 0, 0);
+            font-weight: 700;
+            margin-bottom: 20px;
+                }
+        #booking-form {
+            display: flex;
+            flex-direction: column;
+            max-width: 300px;
+            margin: 10px auto;
+        }
+        #booking-form label {
+            margin-bottom: 5px;
+        }
+        #booking-form input {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #booking-form button {
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #booking-form button:hover {
+            background-color: #faa5eddf;
+        }
+        .route-section {
+            display: flex;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+        .route-section > div {
+            flex: 1;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Booking</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="about us.html">About Us</a></li>
+            <li><a href="Bus Details.html">Bus Details</a></li>
+            <li><a href="account.html">Account</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="booking_form.html">Booking_Form</a></li>
+            <li><a href="booking_confirmation.html">booking_confirmation</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="news.html">News</a></li>
+        </ul>
+    <nav>
+        <!-- Navigation menu (keep as-is) -->
+    </nav>
+    <div class="container">
+        <h2>Book Your Journey</h2>
+        <form id="booking-form" action="process_booking.php" method="POST">
+            <!-- Start Point -->
+            <div class="route-section">
+                <div>
+                    <h3>Start Point</h3>
+                    <div class="form-group">
+                        <label for="start-region">Region:</label>
+                        <select id="start-region" name="start_region" required>
+                            <option value="">Select Region</option>
+                            <option value="">DAR ES SALAAM</option>
+                            <option value="">ARUSHA</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="start-district">District:</label>
+                        <select id="start-district" name="start_district" required>
+                            <option value="">Select District</option>
+                            <option value="">KIGAMBONI</option>
+                            <option value="">MBEZI</option>
+                            <option value="">ILALA</option>
+                            <option value="">KISONGO</option>
+                            <option value="">MERU</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- End Point -->
+                <div>
+                    <h3>End Point</h3>
+                    <div class="form-group">
+                        <label for="end-region">Region:</label>
+                        <select id="end-region" name="end_region" required>
+                            <option value="">Select Region</option>
+                            <option value="">DAR ES SALAAM</option>
+                            <option value="">ARUSHA</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="end-district">District:</label>
+                        <select id="end-district" name="end_district" required>
+                            <option value="">Select District</option>
+                            <option value="">KIGAMBONI</option>
+                            <option value="">MBEZI</option>
+                            <option value="">ILALA</option>
+                            <option value="">KISONGO</option>
+                            <option value="">MERU</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Fields -->
+            <div class="form-group">
+                <label for="bus">Select Bus:</label>
+                <select id="bus" name="bus_id" required>
+                    <option value="">Select Bus</option>
+                    <option value="">Luxury Coach</option>
+                    <option value="">Standard Coach</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Travel Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+
+            <button type="submit">Confirm Booking</button>
+        </form>
+    </div>
+
+    <script>
+        // Populate regions and buses on page load
+        $(document).ready(function() {
+            // Populate regions for start/end points
+            $.ajax({
+                url: 'get_regions.php',
+                success: function(data) {
+                    $('#start-region, #end-region').html(data);
+                }
+            });
+
+            // Populate buses
+            $.ajax({
+                url: 'get_buses.php',
+                success: function(data) {
+                    $('#bus').html(data);
+                }
+            });
+        });
+
+        // Populate districts based on selected region (start point)
+        $('#start-region').change(function() {
+            const regionId = $(this).val();
+            $.ajax({
+                url: 'get_districts.php',
+                data: { region_id: regionId },
+                success: function(data) {
+                    $('#start-district').html(data);
+                }
+            });
+        });
+
+        // Populate districts based on selected region (end point)
+        $('#end-region').change(function() {
+            const regionId = $(this).val();
+            $.ajax({
+                url: 'get_districts.php',
+                data: { region_id: regionId },
+                success: function(data) {
+                    $('#end-district').html(data);
+                }
+            });
+        });
+    </script>
+     <br><br><br><br><br></br>
+</body>
+</html>

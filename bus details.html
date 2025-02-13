@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Details - Bus Booking</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('innos4.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color:  rgba(66, 167, 245, 0.756);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            margin: 0;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 700px;
+            margin: 100px auto 20px auto;
+            background-color: rgba(246, 245, 246, 0.817);
+            padding: 8px;
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(68, 67, 67, 0.982);
+            opacity: 0.9;
+        }
+        h2 {
+            text-align: center;
+            color: rgb(0, 0, 0);
+            font-weight: 700;
+            margin-bottom: 20px;
+                }
+        .bus-card {
+            border: 1px solid #040000;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 10px;
+        }
+        footer {
+            background-color: rgba(51, 51, 51, 0.8);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bus Details</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="about us.html">About Us</a></li>
+            <li><a href="Bus Details.html">Bus Details</a></li>
+            <li><a href="account.html">Account</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="booking_confirmation.html">booking_confirmation</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="news.html">News</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h2>Bus Details</h2>
+        
+        <div class="bus-card">
+            <h3>Bus 1: Luxury Coach</h3>
+            <img src="innos3.jpeg" alt="Luxury Coach" style="width: 100%; max-width: 300px; border-radius: 10px;">
+            <p><strong>Features:</strong></p>
+            <ul>
+                <li>Spacious and comfortable seating</li>
+                <li>Air conditioning and Wi-Fi</li>
+                <li>Onboard entertainment system</li>
+                <li>Charging ports at every seat</li>
+            </ul>
+            <p><strong>Capacity:</strong> 50 passengers</p>
+            <p><strong>Routes:</strong> Arusha to Dar es Salaam, Dodoma to Mwanza</p>
+        </div>
+        
+        <div class="bus-card">
+            <h3>Bus 2: Standard Coach</h3>
+            <img src="bus.jpg" alt="Standard Coach" style="width: 100%; max-width: 300px; border-radius: 10px;">
+            <p><strong>Features:</strong></p>
+            <ul>
+                <li>Comfortable seating</li>
+                <li>Air conditioning</li>
+                <li>Overhead storage space</li>
+            </ul>
+            <p><strong>Capacity:</strong> 40 passengers</p>
+            <p><strong>Routes:</strong> Dar es Salaam to Tanga, Moshi to Arusha</p>
+        </div>
+    </div>
+    <br><br><br><br><br></br>
+    <footer>
+        <p>&copy; 2025 Bus Reservation. All rights reserved.</p>
+        <p>Powered by <a href="#" target="_blank">Innocent</a></p>
+    </footer>
+</body>
+</html>
